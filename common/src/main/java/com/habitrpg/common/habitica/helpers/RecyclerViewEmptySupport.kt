@@ -107,7 +107,10 @@ class RecyclerViewStateAdapter(val showLoadingAsEmpty: Boolean = false) : Recycl
                 if (emptyViewBuilder != null) {
                     HolderViewHolder(emptyViewBuilder?.invoke() ?: View(parent.context))
                 } else {
-                    EmptyViewHolder(parent.inflate(R.layout.empty_item))
+                    val view = parent.inflate(R.layout.empty_item)
+                    val layoutParams = view.layoutParams
+                    layoutParams.width = parent.width
+                    EmptyViewHolder(view)
                 }
         }
     }
